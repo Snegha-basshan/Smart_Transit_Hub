@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Registration</title>
+    <script>
+        function login() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            // Call Android method
+            Android.login(username, password);
+        }
+
+        function register() {
+            var username = document.getElementById("regUsername").value;
+            var password = document.getElementById("regPassword").value;
+            // Call Android method
+            Android.register(username, password);
+        }
+    </script>
+</head>
+<body>
+<!-- Login Form -->
+<h2>Login</h2>
+<form onsubmit="login(); return false;">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+    <input type="submit" value="Login">
+</form>
+
+<hr>
+
+<!-- Registration Form -->
+<h2>Register</h2>
+<form onsubmit="register(); return false;">
+    <label for="regUsername">Username:</label>
+    <input type="text" id="regUsername" name="regUsername" required><br><br>
+    <label for="regPassword">Password:</label>
+    <input type="password" id="regPassword" name="regPassword" required><br><br>
+    <input type="submit" value="Register">
+</form>
+</body>
+</html>
+

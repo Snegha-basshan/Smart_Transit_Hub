@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Peer Connection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<h2>Peer Connection</h2>
+<label for="timeInput">Enter Time (e.g., 08:00 AM): </label>
+<input type="text" id="timeInput" placeholder="HH:MM AM/PM">
+<button onclick="fetchPeerContact()">Get Peer Contact</button>
+
+<h3>Contact Information:</h3>
+<p id="contactInfo">No contact info available</p>
+
+<script type="text/javascript">
+    const peerContacts = {
+        "08:00 AM": [
+            "Arthi (available in MUTHUKADAI on every Tuesday to Main Campus) - +9856423541",
+            "Arsh (available in WALAJA on every Monday to Main Campus) - +9874361231",
+            "Aryan (available in THIRUVALAM on every Wednesday to 11TH GATE) - +8364811460",
+            "Tanvi (available in SIPCOT on every Thursday to 11TH GATE) - +9093864611",
+            "Ananya (available in WALAJA on every Friday to 11TH GATE) - +9382868140"
+        ],
+        "09:00 AM": [
+            "Jashwanth (available in MUTHUKADAI on every Tuesday to Main Campus) - +9876543212",
+            "Jithesh (available in WALAJA on every Monday to Main Campus) - +9876453212",
+            "Janvi (available in THIRUVALAM on every Wednesday to 11TH GATE) - +9876543542",
+            "Bhavan (available in SIPCOT on every Thursday to Main Campus) - +9876543212",
+            "Saravana (available in WALAJA on every Friday to 11TH GATE) - +9876543212"
+        ],
+        "10:00 AM":[
+            "snegha priyaa(AVAILABLE IN THIRUVALAM ON EVERY MONDAY TO MAIN CAMPUS) - +9487885148",
+            "KANDHAN(AVAILABLE IN SIPCOT ON EVERY TUESDAY TO 11TH GATE)- +9487895148",
+            "KARTHIKEY (AVAILABLE IN MUTHUKADAI ON EVERY THURSDAY TO MAINCAMPUS) - +9489055148",
+            "PREM (AVAILABLE IN WALAJA ON EVERY WEDNESDAY TO MAIN CAMPUS)- +9237555148",
+            "PARVATHI(AVAILABLE IN MUTHUKADAI ON EVERY FRIDAY TO 11TH GATE) - +9487555788",
+        ],
+        "08:00 PM":[
+            "valli (AVAILABLE IN KATPADI BUSSTAND ON EVERY MONDAY ON THE WAY TO THIRUVALAM) - +8790323868",
+            "VASANTH (AVAILABLE IN KATPADI BUSSTAND ON EVERY TUESDAY ON THE WAY TO MUTHUKADAI) - +8790534868",
+            "VIBAV (AVAILABLE IN MAINCAMPUS BUSSTAND ON EVERY WEDNESDAY ENROUTE TO WALAJA) - +8790511168",
+            "SRIMATHI (AVAILABLE IN 11TH GATE ON EVERY THURSDAY ENROUTE TO GUDIYATHAM) - +8790598786",
+            "SRINATH (AVAILABLE IN BRAHMAPURAM ON EVERY FRIDAY ENROUTE TO WALAJA,MUTHUKADAI) - +8790034868",
+        ],
+        "11:00 AM":[
+            "adhvaith(AVAILABLE IN WALAJA ON EVERY MONDAY TO MAINCAMPUS) - +9555451254",
+            "ROSHAN (AVAILABLE IN KATPADI ON EVERY TUESDAY TO MAINCAMPUS) - +9785451254",
+            "SHEEBHA (AVAILABLE IN THIRUVALAM ON EVERY WEDNESDAY TO MAINCAMPUS) - +9675451254",
+            "SUDAR (AVAILABLE IN SIPCOT ON EVERY FRIDAY TO 11TH GATE) - +9785122454",
+            "ELAN(AVAILABLE IN THIRUVALAM ON EVERY THURSDAY TO 11TH GATE) - +9785561254",
+        ],
+        "12:00 PM":[
+            "kanvi(AVAILABLE IN VELLORE ON EVERY MONDAY TO 11TH GATE) - +9711145099",
+            "KAVIN(AVAILABLE IN GUDIYATHAM ON EVERY TUESDAY TO 11TH GATE) - +9732642129",
+            "KAVYA(AVAILABLE IN WALAJA ON EVERY WEDNESDAY TO MAINCAAMPUS ) - +9732632399",
+            "DHEEKSHI(AVAILABLE IN SIPCOT ON EVERY THURSDAY TO MAINCAMPUS) - +9754545099",
+            "PAVI(AVAILABLE IN THIRUVALAM ON EVERY FRIDAY TO 11TH GATE) - +9732612399",
+            "TARUN(AVAILABLE IN MUTHUKADAI ON ALL DAYS TO 11TH GATE ) - +9432645099",
+        ],
+        "01:00 PM":["JINDHU(AVAILABLE IN ARCOT TO 11TH GATE ON ALL DAYS) - +9854265121"],
+
+        "02:00 PM":["MIRUDHULLA(AVAILABLE IN MUTHUKADAI ON ALL DAYS TO 11TH GATE ) - +8653490525"],
+
+        "03:00 PM":["DIVYA(AVAILABLE ON ALL DAYS IN 11TH GATE  TO VELLORE) - +890565409523"],
+
+        "04:00 PM":["SANGEETHA(AVAILABLE IN BRAHMAPURAM ON WEDNESDAY , THURSDAY ON THE WAY TO MUTHUKADAI FROM MC) - +9875656342"],
+
+        "05:00 PM":["SANJAY(AVAILABLE IN BRAHMAPURAM ON MONDAY , TUESDAY AND FRIDAY ON THE WAY TO WALAJA FROM 11TH GATE ) - +9053476251"],
+
+        "06:00 PM":["PRAVEEN(AVAILABLE ON ALL DAYS IN BRAHMAPURAM TO VELLORE ) - +9543562151"],
+
+        "07:00 PM":[
+            "ADITHYA(AVAILABLE ON ALL DAYS IN MC TO GUDIYATHAM) - +9876321232",
+            "KISHORE(AVAILABLE ON ALL DAYS IN KATPADI BUSSTAND TO WALAJA) - +9764321256"
+        ]
+    };
+
+    function fetchPeerContact() {
+        const time = document.getElementById("timeInput").value;
+        const contactInfo = document.getElementById("contactInfo");
+
+        if (peerContacts[time]) {
+            contactInfo.innerText = `Contacts for ${time}:\n` + peerContacts[time].join('\n');
+            setTimeout(() => {
+                window.location.href = "feedback.html";
+            }, 20000); // Navigate to feedback page after 3 seconds
+        } else {
+            contactInfo.innerText = "No contact info available for this time";
+        }
+    }
+</script>
+</body>
+</html>

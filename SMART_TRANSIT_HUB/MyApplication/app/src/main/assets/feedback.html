@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<h2>Feedback</h2>
+<p>We value your feedback! Please share your experience with us.</p>
+
+<form id="feedbackForm">
+    <label for="feedbackInput">Your Feedback:</label><br>
+    <textarea id="feedbackInput" rows="5" cols="30" placeholder="Type your feedback here..." required></textarea><br><br>
+    <button type="submit">Submit Feedback</button>
+</form>
+
+<p id="thankYouMessage" style="display:none; color: green;">Thank you for your feedback!</p>
+
+<script type="text/javascript">
+        // Handle the feedback submission
+        document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting the traditional way
+            const feedbackInput = document.getElementById("feedbackInput").value;
+
+            if (feedbackInput.trim()) {
+                document.getElementById("thankYouMessage").style.display = "block"; // Show thank you message
+                document.getElementById("feedbackInput").value = ""; // Clear the textarea
+            }
+        });
+    </script>
+</body>
+</html>

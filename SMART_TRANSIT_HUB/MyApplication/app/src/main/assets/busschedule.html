@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Schedule</title>
+</head>
+<body>
+<h2>Available Buses</h2>
+<p>Based on your timetable, the following buses are available:</p>
+<table border="1">
+    <tr>
+        <th>Bus Number</th>
+        <th>Departure Time</th>
+        <th>Destination</th>
+        <th>Stop</th>
+    </tr>
+    <tr>
+        <td>BUS 10A(GOVERNMENT)</td>
+        <td>8:00 AM</td>
+        <td>MAINCAMPUS(REACH BY 8:15)</td>
+        <td>MUTHUKADAI(PRESENT BY 7:50)</td>
+    </tr>
+    <tr>
+        <td>BUS 10D(PUBLIC)</td>
+        <td>9:00 AM</td>
+        <td>11TH GATE(REACH BY 8:45)</td>
+        <td>WALAJA(PRESENT BY 8:15 )</td>
+    </tr>
+
+
+
+
+    <tr>
+        <td>BUS 10C(PUBLIC)</td>
+        <td>10:00 AM</td>
+        <td>11TH GATE(REACH BY 11:15)</td>
+        <td>SIPCOT(PRESENT BY 10:15)</td>
+    </tr>
+    <tr>
+        <td>BUS BALAMURUGAN(PRIVATE)</td>
+        <td>12:00 PM</td>
+        <td>Main Campus(REACH BY 1)</td>
+        <td>MUTHUKADAI(PRESENT BY 12:05)</td>
+    </tr>
+    <tr>
+        <td>BUS APLPRN(PRIVATE)</td>
+        <td>1:00 PM</td>
+        <td>Main Campus( REACH BY 2)</td>
+        <td>GUDIYATHAM(PRESENT BY 1:10)</td>
+    </tr>
+    <tr>
+        <td>Bus VRM(PRIVATE)</td>
+        <td>2:00 PM</td>
+        <td>11TH GATE(REACH BY 2:40)</td>
+        <td>VELLORE(PRESENT BY 2:10)</td>
+    </tr>
+
+
+    <tr>
+        <td>BUS JDL(PRIVATE)</td>
+        <td>4:00 PM</td>
+        <td>MUTHUKADAI(REACH BY 4:30)</td>
+        <td>MAINCAMPUS(PRESENT BY 4:05)</td>
+    </tr>
+    <tr>
+        <td>BUS ASM(PRIVATE)</td>
+        <td>5:00 PM</td>
+        <td>MUTHUKADAI(REACHED BY 5:45 PM)</td>
+        <td>MAINCAMPUS(PRESENT BY 5:15 PM)</td>
+    </tr>
+    <tr>
+        <td>BUS TKB(PRIVATE)</td>
+        <td>6:00 PM</td>
+        <td>THIRUVALAM(REACHED BY 6.30)</td>
+        <td>MAINCAMPUS(PRESENT BY 6:05)</td>
+    </tr>
+    <tr>
+        <td>BUS 10A(PUBLIC)</td>
+        <td>7:00 PM</td>
+        <td>MUTHUKADAI(REACH BY 7:50 )</td>
+        <td>MAINCAMPUS(PRESENT BY 7:05)</td>
+    </tr>
+    <!-- Additional bus rows here -->
+</table>
+
+<h3>Input Return Time</h3>
+<p>If you need to return home at a specific time, please input your preferred time:</p>
+
+<form id="returnTimeForm">
+    <label for="returnHour">Select Return Hour:</label>
+    <select id="returnHour" name="returnHour" required>
+        <option value="" disabled selected>Hour</option>
+        <!-- Hours options from 1 to 12 -->
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+    </select>:
+    <select id="returnMinute" name="returnMinute" required>
+        <option value="" disabled selected>Minute</option>
+        <option value="00">00</option>
+        <option value="15">15</option>
+        <option value="30">30</option>
+        <option value="45">45</option>
+    </select>
+    <select id="returnAMPM" name="returnAMPM" required>
+        <option value="AM">AM</option>
+        <option value="PM">PM</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Submit Return Time">
+</form>
+
+<h3>Available Buses for Selected Return Time</h3>
+<div id="availableBuses" style="display: none;">
+    <p>Based on your selected return time, the following buses are available:</p>
+    <table border="1">
+        <tr>
+            <th>Bus Number</th>
+            <th>Departure Time</th>
+            <th>Destination</th>
+            <th>Stop</th>
+        </tr>
+        <tbody id="busList">
+        <!-- Bus information will be populated here based on return time -->
+        </tbody>
+    </table>
+</div>
+
+<h3>Proceed to Peer Connection</h3>
+<button onclick="Android.showPeerConnectionModule()">Go to Peer Connection Module</button>
+
+<script>
+    document.getElementById('returnTimeForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const returnHour = parseInt(document.getElementById('returnHour').value);
+        const returnMinute = parseInt(document.getElementById('returnMinute').value);
+        const returnAMPM = document.getElementById('returnAMPM').value;
+        const returnTime = `${returnHour}:${returnMinute < 10 ? '0' : ''}${returnMinute} ${returnAMPM}`;
+
+        alert(`You have selected to return at ${returnTime}.`);
+        displayAvailableBuses(returnTime);
+    });
+
+    function displayAvailableBuses(selectedTime) {
+        const buses = [
+            { number: 'Bus 10D(PUBLIC)', time: '8:00 AM', destination: 'Main Campus(REACH BY 8:15)', stop: 'MUTHUKADAI(PRESENT BY 7:50)' },
+            { number: 'Bus 10D(PUBLIC)', time: '9:00 AM', destination: '11TH GATE(REACH BY 8:45)', stop: 'WALAJA(PRESENT BY 8:15)' },
+            { number: 'Bus 10C(PUBLIC)', time: '10:00 AM', destination: '11TH GATE(REACH BY 11:15)', stop: 'SIPCOT(PRESENT BY 10:15)' },
+            { number: 'Bus BALAMURUGAN(PRIVATE)', time: '12:00 PM', destination: 'Main Campus(REACH BY 1)', stop: 'MUTHUKADAI(PRESENT BY 12:05)' },
+            { number: 'Bus APLPRN(PRIVATE)', time: '1:00 PM', destination: 'Main Campus(REACH BY 2)', stop: 'GUDIYATHAM(PRESENT BY 1:10)' },
+            { number: 'Bus VRM(PRIVATE)', time: '2:00 PM', destination: '11TH GATE (REACH BY 2:40)', stop: 'VELLORE(PRESENT BY 2:10)' },
+            { number: 'Bus JDL(PRIVATE )', time: '4:00 PM', destination: 'MUTHUKADAI(REACH BY 4:30)', stop: 'MAINCAMPUS(PRESENT BY 4:05)' },
+            { number: 'Bus ASM(PRIVATE )', time: '5:00 PM', destination: 'MUTHUKADAI(REACH BY 5:45)', stop: 'MAINCAMPUS(PRESENT BY 5:15)' },
+            { number: 'Bus TKB(PRIVATE )', time: '6:00 PM', destination: 'THIRUVALAM(REACH BY 6:30)', stop: 'MAINCAMPUS(PRESENT BY 6:05)' },
+            { number: 'Bus 10A(PUBLIC )', time: '7:00 PM', destination: 'MUTHUKADAI(REACH BY 7:50)', stop: 'MAINCAMPUS(PRESENT BY 7:05)' }
+        ];
+
+        const busListElement = document.getElementById('busList');
+        busListElement.innerHTML = '';
+
+        buses.forEach(bus => {
+            if (bus.time === selectedTime) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${bus.number}</td>
+                    <td>${bus.time}</td>
+                    <td>${bus.destination}</td>
+                    <td>${bus.stop}</td>
+                `;
+                busListElement.appendChild(row);
+            }
+        });
+
+        document.getElementById('availableBuses').style.display = busListElement.childElementCount > 0 ? 'block' : 'none';
+    }
+</script>
+</body>
+</html>
